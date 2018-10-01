@@ -1,0 +1,3 @@
+# SampleInventory
+
+Make small inventory
