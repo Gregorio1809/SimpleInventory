@@ -24,25 +24,28 @@ def details(request, item_id):
 
 def transferitm(request, item_id):
     client = Client.objects.get(place=request.POST.get("client"))
-    value = Value.objects.get(place=request.POST.get("value"))
-    item = Item.objects.get(pk=item_id)
-    quantity = request.POST.get("quantity")
-    transaction = Transaction(quantity=quantity, item=item, client=client, value=value)
-    transaction.save()
-    item.quantity = item.quantity - int(quantity)
-    item.save()
-    return render(request, 'transferitm.html',
-                  {'transaction': transaction, 'quantity': quantity, 'item': item, 'client': client, 'value':value})
-
-
-def returnitm(request, item_id):
-    client = Client.objects.get(place=request.POST.get("client"))
-    value = Client.objects.get(place=request.POST.get("value"))
+    value = request.POST.get("value")
     item = Item.objects.get(pk=item_id)
     quantity = request.POST.get("quantity")
     transaction = Transaction(quantity=quantity, item=item, client=client)
     transaction.save()
-    item.quantity = item.quantity + int(quantity)
+    item.quantity = item.quantity - int(quantity)
     item.save()
+    return render(request, 'transferitm.html',
+                  {'transaction': transaction, 'quantity': quantity, 'item': item, 'client': client})
+
+
+def returnitm(request, item_id):
+    client = Client.objects.get(place=request.POST.get("client"))
+    value = request.POST.get("value")
+    item = Item.objects.get(pk=item_id)
+    quantity = request.POST.get("quantity")
+    transaction = Transaction(quantity=quantity, item=item, client=client)
+    transaction.save()
+    if item.value is not value:
+        item.quantity = item.quantity
+    else:
+        item.quantity = item.quantity + int(quantity)
+        item.save()
     return render(request, 'returnitm.html',
                   {'transaction': transaction, 'quantity': quantity, 'item': item, 'client': client, 'value': value})
