@@ -1,9 +1,12 @@
 from django.shortcuts import render
 
 # Create your views here.
-from django.http import HttpResponse
-from .models import Item, Transaction, Client, Value
+from django.http import HttpResponse, HttpResponseRedirect
+from .models import Item, Transaction, Client, Value, Category
+from django.views import generic
+from django.views.generic.edit import CreateView
 from django.shortcuts import render, get_object_or_404
+from .forms import ItemForm
 from django import forms
 
 
@@ -48,4 +51,19 @@ def returnitm(request, item_id):
         item.quantity = item.quantity + int(quantity)
         item.save()
     return render(request, 'returnitm.html',
-                  {'transaction': transaction, 'quantity': quantity, 'item': item, 'client': client, 'value': value})
+                  {'transaction': transaction, 'quantity': quantity, 'item': item, 'client': client})
+
+    # class ItemCreate(CreateView):
+    #    model = Item
+    #    fields = ['name', 'category', 'value', 'quantity']
+
+
+def create_item(request):
+    form = ItemForm(request.POST or None, request.FILES or None)
+    if form.is_valid():
+        item = form.save(commit=False)
+        item.name = request.name
+        item.category = Category.cat.all()
+        item.value = Value.val.all()
+        item.quantity = request.quantity
+        return HttpResponse(request, 'add_item.html')

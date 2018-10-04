@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Item,Category,Client,Transaction, Value
+from .models import Item, Category, Client, Transaction, Value
 
 admin.site.register(Item)
 admin.site.register(Client)

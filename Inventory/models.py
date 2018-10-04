@@ -20,8 +20,8 @@ class Value(models.Model):
 class Item(models.Model):
     item_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    value = models.ForeignKey(Value, on_delete=models.CASCADE, blank=True, null=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='cat')
+    value = models.ForeignKey(Value, on_delete=models.CASCADE, blank=True, null=True, related_name='val')
     quantity = models.IntegerField(default=0)
 
     def __str__(self):

@@ -21,7 +21,7 @@
     {% for item in items_list %}
     <tr>
         <td>{{ item.item_id }}</td>
-        <td><a href="{% url 'details' item.item_id %}">{{ item.name }}</a></td>
+        <td><a href="{% url 'Inventory:details' item.item_id %}">{{ item.name }}</a></td>
         <td>{{ item.category.category }}</td>
         <td>{{ item.quantity }}</td>
         <td>{{ item.value }}</td>
