@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # SampleInventory
 
 Make small inventory
@@ -13,4 +12,3 @@ Here clicking on Transfer/Return will take you to confirmation page providing yo
 Also by going to the django admin page will let you Create, Read, Update and Delete Items, 
 Clients (supposed to receive or return items), Categories and Transactions. 
 Dont forward, back or reload pages as that may lead to redundant data. Transact by using buttons on the page only. 
->>>>>>> Create README.md
