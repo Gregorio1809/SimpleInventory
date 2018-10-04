@@ -4,8 +4,9 @@ from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Item, Transaction, Client, Value, Category
 from django.views import generic
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, DeleteView
 from django.shortcuts import render, get_object_or_404
+from django.urls import reverse_lazy
 from .forms import ItemForm
 from django import forms
 
@@ -23,12 +24,11 @@ class ItemCreate(generic.CreateView):
     fields = ['name', 'category', 'value', 'quantity']
 
 
-# def index(request):
-#    items_list = Item.objects.all()
-#    context = {
-#        'items_list': items_list,
-#    }
-#    return render(request, 'index.html', context)
+class ItemDelete(DeleteView):
+    model = Item
+    success_url = reverse_lazy('Inventory:index')
+
+
 
 
 def details(request, item_id):
@@ -66,8 +66,6 @@ def returnitm(request, item_id):
     return render(request, 'returnitm.html',
                   {'transaction': transaction, 'quantity': quantity, 'item': item, 'client': client})
 
-    # class ItemCreate(CreateView):
-    #    model = Item
-    #    fields = ['name', 'category', 'value', 'quantity']
+
 
 
