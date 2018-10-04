@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 
 # Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect
@@ -10,12 +10,25 @@ from .forms import ItemForm
 from django import forms
 
 
-def index(request):
-    items_list = Item.objects.all()
-    context = {
-        'items_list': items_list,
-    }
-    return render(request, 'index.html', context)
+class IndexView(generic.ListView):
+    template_name = 'index.html'
+    context_object_name = 'items_list'
+
+    def get_queryset(self):
+        return Item.objects.all()
+
+
+class ItemCreate(generic.CreateView):
+    model = Item
+    fields = ['name', 'category', 'value', 'quantity']
+
+
+# def index(request):
+#    items_list = Item.objects.all()
+#    context = {
+#        'items_list': items_list,
+#    }
+#    return render(request, 'index.html', context)
 
 
 def details(request, item_id):
@@ -58,12 +71,13 @@ def returnitm(request, item_id):
     #    fields = ['name', 'category', 'value', 'quantity']
 
 
+
 def create_item(request):
-    form = ItemForm(request.POST or None, request.FILES or None)
+    form = ItemForm(request.POST or None)
     if form.is_valid():
         item = form.save(commit=False)
         item.name = request.name
         item.category = Category.cat.all()
         item.value = Value.val.all()
         item.quantity = request.quantity
-        return HttpResponse(request, 'add_item.html')
+        return render_to_response(request, 'item_form.html')

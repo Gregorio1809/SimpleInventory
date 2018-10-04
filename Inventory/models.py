@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.urls import reverse
 
 # Create your models here.
 
@@ -23,6 +23,9 @@ class Item(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='cat')
     value = models.ForeignKey(Value, on_delete=models.CASCADE, blank=True, null=True, related_name='val')
     quantity = models.IntegerField(default=0)
+
+    def get_absolute_url(self):
+        return reverse('Inventory:details', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.name
