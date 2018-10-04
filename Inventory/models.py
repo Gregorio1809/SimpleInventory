@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 
+
 # Create your models here.
 
 class Category(models.Model):
@@ -25,10 +26,11 @@ class Item(models.Model):
     quantity = models.IntegerField(default=0)
 
     def get_absolute_url(self):
-        return reverse('Inventory:details', kwargs={'pk': self.pk})
+        return reverse('Inventory:details', kwargs={'item_id': self.item_id})
 
-    def __str__(self):
-        return self.name
+
+def __str__(self):
+    return self.name
 
 
 class Client(models.Model):

@@ -71,13 +71,3 @@ def returnitm(request, item_id):
     #    fields = ['name', 'category', 'value', 'quantity']
 
 
-
-def create_item(request):
-    form = ItemForm(request.POST or None)
-    if form.is_valid():
-        item = form.save(commit=False)
-        item.name = request.name
-        item.category = Category.cat.all()
-        item.value = Value.val.all()
-        item.quantity = request.quantity
-        return render_to_response(request, 'item_form.html')

@@ -1,13 +1,13 @@
 {% for field in form %}
-{% for i in item.val.all %}
+<!-- {% for i in item.val.all %} -->
 <div class="form-group">
     <div class="col-sm-offset-12 col-sm-10">
         <span class="text-danger small">{{fields.errors}}</span>
     </div>
     <label class="control-label col-sm-2">{{fields.label_tag}}</label>
     <div class="col-sm-10">{{fields}}</div>
-    <select class="col-sm-10">{{ i.option }}</select>
-    <div class="col-sm-10">{{i}}</div>
+    <!-- <select class="col-sm-10">{{ i.option }}</select>
+    <div class="col-sm-10">{{i}}</div> -->
 </div>
-{% endfor %}
+<!-- {% endfor %} -->
 {% endfor %}
