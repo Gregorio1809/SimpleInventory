@@ -11,6 +11,7 @@ urlpatterns = [
     # url(r'^(?P<item_id>[0-9]+)/detail/return/$', views.returnitm(), name='returnitm'),
     # url(r'^create_item/$', views.create_item, name='create_item'),
     url(r'^item/add/$', views.ItemCreate.as_view(), name='item_form'),
+    url(r'^item/(?P<pk>[0-9]+)/delete/$', views.ItemDelete.as_view(), name='item-delete'),
 
     # path('', views.index, name='index'),
     # path('<int:item_id>/', views.details, name='details'),

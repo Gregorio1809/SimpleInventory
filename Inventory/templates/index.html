@@ -15,6 +15,7 @@
         <th>Category</th>
         <th>Quantity</th>
         <th>Value</th>
+        <th>Action</th>
     </tr>
     </thead>
     <tbody>
@@ -25,6 +26,16 @@
         <td>{{ item.category.category }}</td>
         <td>{{ item.quantity }}</td>
         <td>{{ item.value }}</td>
+        <td>
+            <form action="{% url 'Inventory:item-delete' item.item_id %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <input type="hidden" name="item_id" value="{{ item.item_id }}"/>
+                <button type="submit" class="btn btn-default btn-sm">
+                  Delete
+                </button>
+            </form>
+
+        </td>
         </a>
     </tr>
     {% endfor %}
