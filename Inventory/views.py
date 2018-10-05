@@ -12,11 +12,15 @@ from django import forms
 
 
 class IndexView(generic.ListView):
-    template_name = 'index.html'
+    template_name = 'items.html'
     context_object_name = 'items_list'
 
     def get_queryset(self):
         return Item.objects.all()
+
+
+class HomeView(generic.TemplateView):
+    template_name = 'index.html'
 
 
 class ItemCreate(generic.CreateView):

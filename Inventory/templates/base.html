@@ -12,11 +12,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link href='https://fonts.googleapis.com/css?family=Satify' rel='stylesheet' type='text/css'>
 
+
     <link rel="icon" href="{% static 'Inventory/logo2.ico' %}">
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-light">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggler navbar-left" data-toggle="collapse" data-target="#topNavBar">
@@ -24,32 +25,21 @@
             </button>
             <!-- <a class="navbar-brand navbar-left" href="{% url 'Inventory:index' %}">Inventory</a> -->
         </div>
-        <div class="collapse navbar-collapse" id="topNavbar">
+        <div class="navbar-collapse" id="topNavbar">
             <ul class="nav navbar-nav">
                 <li class="">
-                    <a href="#">
+                    <a href="{% url 'Inventory:index' %}">
                         <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Items
                     </a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                    <a href="{% url 'Inventory:item_form' %}">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New
-                    </a>
-                </li>
+
             </ul>
 
             <ul class="nav navbar-nav navbar-left">
                 <li class="">
-                    <a class="glyphicon glyphicon-home" href="/"> Home</a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                    <a href="{% url 'Inventory:category_form' %}">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New Category
-                    </a>
+                    <a class="glyphicon glyphicon-home" href="{% url 'Inventory:home' %}"> Home</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-left">
@@ -58,13 +48,23 @@
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New Client
                     </a>
                 </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
+
                 <li class="">
                     <a href="{% url 'Inventory:value_form' %}">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New Value
                     </a>
                 </li>
+                <li class="">
+                    <a href="{% url 'Inventory:category_form' %}">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New Category
+                    </a>
+                </li>
+                <li class="">
+                    <a href="{% url 'Inventory:item_form' %}">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New Items
+                    </a>
+                </li>
+
             </ul>
         </div>
     </div>

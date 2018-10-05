@@ -6,6 +6,7 @@ app_name = 'Inventory'
 
 urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'^home/$', views.HomeView.as_view(), name='home'),
     url(r'^(?P<item_id>[0-9]+)/detail/$', views.details, name='details'),
     # url(r'^(?P<item_id>[0-9]+)/detail/transfer/$', views.returnitm, name='transferitm'),
     # url(r'^(?P<item_id>[0-9]+)/detail/return/$', views.returnitm(), name='returnitm'),
