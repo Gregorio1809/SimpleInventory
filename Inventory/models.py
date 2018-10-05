@@ -7,12 +7,18 @@ from django.urls import reverse
 class Category(models.Model):
     category = models.CharField(max_length=50)
 
+    def get_absolute_url(self):
+        return reverse('Inventory:index')
+
     def __str__(self):
         return self.category
 
 
 class Value(models.Model):
     value = models.CharField(max_length=20, default='Kilograms')
+
+    def get_absolute_url(self):
+        return reverse('Inventory:index')
 
     def __str__(self):
         return self.value
@@ -36,6 +42,9 @@ def __str__(self):
 class Client(models.Model):
     place = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
+
+    def get_absolute_url(self):
+        return reverse('Inventory:index')
 
     def __str__(self):
         return self.place

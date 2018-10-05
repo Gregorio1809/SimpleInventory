@@ -29,6 +29,36 @@ class ItemDelete(DeleteView):
     success_url = reverse_lazy('Inventory:index')
 
 
+class ClientCreate(generic.CreateView):
+    model = Client
+    fields = ['place', 'description']
+
+
+class CategoryCreate(generic.CreateView):
+    model = Category
+    fields = ['category']
+
+
+class ValueCreate(generic.CreateView):
+    model = Value
+    fields = ['value']
+
+
+class ClientDelete(DeleteView):
+    model = Client
+    success_url = reverse_lazy('Inventory:index')
+
+
+class CategoryDelete(DeleteView):
+    model = Category
+    success_url = reverse_lazy('Inventory:index')
+
+
+class ValueDelete(DeleteView):
+    model = Value
+    success_url = reverse_lazy('Inventory:index')
+
+
 
 
 def details(request, item_id):

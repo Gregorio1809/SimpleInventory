@@ -19,7 +19,10 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="{% url 'Inventory:index' %}">Inventory</a>
+            <button type="button" class="navbar-toggler navbar-left" data-toggle="collapse" data-target="#topNavBar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- <a class="navbar-brand navbar-left" href="{% url 'Inventory:index' %}">Inventory</a> -->
         </div>
         <div class="collapse navbar-collapse" id="topNavbar">
             <ul class="nav navbar-nav">
@@ -29,27 +32,43 @@
                     </a>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-left">
+            <ul class="nav navbar-nav navbar-right">
                 <li class="">
                     <a href="{% url 'Inventory:item_form' %}">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New
                     </a>
                 </li>
             </ul>
+
             <ul class="nav navbar-nav navbar-left">
                 <li class="">
                     <a class="glyphicon glyphicon-home" href="/"> Home</a>
                 </li>
             </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                    <a href="{% url 'Inventory:category_form' %}">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New Category
+                    </a>
+                </li>
+            </ul>
             <ul class="nav navbar-nav navbar-left">
-
-                <form class="navbar-form navbar-left" role="search" method="get" action="#">
-                    <div class="form-group">
-                    </div>
-                </form>
+                <li class="">
+                    <a href="{% url 'Inventory:client_form' %}">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New Client
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                    <a href="{% url 'Inventory:value_form' %}">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New Value
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
+
 </nav>
 </body>
 {% block body%}
