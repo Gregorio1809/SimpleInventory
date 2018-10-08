@@ -2,12 +2,14 @@ from django.shortcuts import render, render_to_response
 
 # Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect
+from django.views.generic.base import TemplateResponseMixin
+
 from .models import Item, Transaction, Client, Value, Category
 from django.views import generic
 from django.views.generic.edit import CreateView, DeleteView
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
-from .forms import ItemForm
+from .forms import ItemForm, ClientForm, CategoryForm, ValueForm
 from django import forms
 
 
@@ -33,19 +35,34 @@ class ItemDelete(DeleteView):
     success_url = reverse_lazy('Inventory:index')
 
 
-class ClientCreate(generic.CreateView):
+class ClientCreate(generic.CreateView, generic.ListView, TemplateResponseMixin):
     model = Client
-    fields = ['place', 'description']
+    form_class = ClientForm
+    template_name = 'Inventory/client_form.html'
+    context_object_name = 'client_list '
+
+    def get_queryset(self):
+        return Client.objects.all()
 
 
-class CategoryCreate(generic.CreateView):
+class CategoryCreate(generic.CreateView, generic.ListView, TemplateResponseMixin):
     model = Category
-    fields = ['category']
+    form_class = CategoryForm
+    template_name = 'Inventory/category_form.html'
+    context_object_name = 'category_list'
+
+    def get_queryset(self):
+        return Category.objects.all()
 
 
-class ValueCreate(generic.CreateView):
+class ValueCreate(generic.CreateView, generic.ListView, TemplateResponseMixin):
     model = Value
-    fields = ['value']
+    form_class = ValueForm
+    template_name = 'Inventory/value_form.html'
+    context_object_name = 'value_list'
+
+    def get_queryset(self):
+        return Value.objects.all()
 
 
 class ClientDelete(DeleteView):

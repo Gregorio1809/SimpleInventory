@@ -3,6 +3,16 @@
 {% block category_active %} active {% endblock %}
 
 {% block body %}
+
+<script type="text/javascript">
+			$(document).ready(function() {
+    				$('#example').DataTable();
+			} );
+
+
+
+
+</script>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12 col-md-7">
@@ -30,4 +40,19 @@
         </div>
     </div>
 </div>
+<table id="example" class="table table-bordered display" style="width:100%">
+    <thead class="thead-dark">
+    <tr>
+        <th>Category</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for category in category %}
+    <tr>
+        <td>{{ category.category }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
 {% endblock %}

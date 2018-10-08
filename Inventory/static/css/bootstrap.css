@@ -4005,6 +4005,7 @@ input[type="button"].btn-block {
   display: flex;
   -ms-flex-direction: column;
   flex-direction: column;
+  font-color: white;
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
@@ -6137,6 +6138,7 @@ button.bg-light:focus {
 
 .bg-dark {
   background-color: #343a40 !important;
+
 }
 
 a.bg-dark:hover, a.bg-dark:focus,
