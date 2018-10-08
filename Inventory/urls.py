@@ -14,7 +14,7 @@ urlpatterns = [
     url(r'^client/add/$', views.ClientCreate.as_view(), name='client_form'),
     url(r'^category/add/$', views.CategoryCreate.as_view(), name='category_form'),
     url(r'^value/add/$', views.ValueCreate.as_view(), name='value_form'),
-    url(r'^client/(?P<pk>[0-9]+)/delete/$', views.ValueDelete.as_view(), name='client-delete'),
+    url(r'^client/(?P<pk>[0-9]+)/delete/$', views.ClientDelete.as_view(), name='client-delete'),
     url(r'^category/(?P<pk>[0-9]+)/delete/$', views.CategoryDelete.as_view(), name='category-delete'),
     url(r'^value/(?P<pk>[0-9]+)/delete/$', views.ValueDelete.as_view(), name='value-delete'),
 

@@ -39,7 +39,7 @@ class ClientCreate(generic.CreateView, generic.ListView, TemplateResponseMixin):
     model = Client
     form_class = ClientForm
     template_name = 'Inventory/client_form.html'
-    context_object_name = 'client_list '
+    context_object_name = 'client_list'
 
     def get_queryset(self):
         return Client.objects.all()

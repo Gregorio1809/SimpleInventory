@@ -47,7 +47,7 @@ class Client(models.Model):
         return reverse('Inventory:index')
 
     def __str__(self):
-        return self.place
+        return ("%s, %s" % (self.place, self.description))
 
 
 class Transaction(models.Model):
