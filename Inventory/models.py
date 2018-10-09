@@ -34,9 +34,8 @@ class Item(models.Model):
     def get_absolute_url(self):
         return reverse('Inventory:details', kwargs={'item_id': self.item_id})
 
-
-def __str__(self):
-    return self.name
+    def __str__(self):
+        return ("%s, %s, %s" % (self.name, self.quantity, self.value))
 
 
 class Client(models.Model):

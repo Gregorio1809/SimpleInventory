@@ -82,7 +82,7 @@ class ValueDelete(DeleteView):
 def details(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
     clients = Client.objects.all()
-    value = Value.objects.all()
+    value = Item.objects.filter(pk=item_id)
     return render(request, 'details.html', {'item': item, 'clients': clients, 'value': value})
 
 
