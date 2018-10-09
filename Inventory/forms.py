@@ -30,6 +30,3 @@ class ValueForm(forms.ModelForm):
     class Meta:
         model = Value
         fields = ['value']
-
-
-

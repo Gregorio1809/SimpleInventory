@@ -64,8 +64,24 @@
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New Items
                     </a>
                 </li>
-
             </ul>
+            {% if user.is_authenticated %}
+            <ul class="nav navbar-nav navbar-left">
+                <li class="">
+                    <a href="{% url 'Inventory:logout' %}" style="color:white">
+                        <span aria-hidden="true"></span> Logout
+                    </a>
+                </li>
+            </ul>
+            {% else %}
+            <ul class="nav navbar-nav navbar-left">
+                <li class="">
+                    <a href="{% url 'Inventory:login' %}" style="color:white">
+                        <span aria-hidden="true"></span> Login
+                    </a>
+                </li>
+            </ul>
+            {% endif %}
         </div>
     </div>
 

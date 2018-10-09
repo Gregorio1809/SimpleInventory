@@ -1,8 +1,8 @@
 from django.shortcuts import render, render_to_response
 
-# Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic.base import TemplateResponseMixin
+from django.template import RequestContext
 
 from .models import Item, Transaction, Client, Value, Category
 from django.views import generic
@@ -10,7 +10,6 @@ from django.views.generic.edit import CreateView, DeleteView
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from .forms import ItemForm, ClientForm, CategoryForm, ValueForm
-from django import forms
 
 
 class IndexView(generic.ListView):
@@ -80,8 +79,6 @@ class ValueDelete(DeleteView):
     success_url = reverse_lazy('Inventory:index')
 
 
-
-
 def details(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
     clients = Client.objects.all()
@@ -118,5 +115,13 @@ def returnitm(request, item_id):
                   {'transaction': transaction, 'quantity': quantity, 'item': item, 'client': client})
 
 
+def handler404(request, *args, **kwargs):
+    response = render_to_response('404.html', {}, context_instance=RequestContext(request))
+    response.status_code = 404
+    return response
 
 
+def handler500(request, *args, **kwargs):
+    response = render_to_response('500.html', {}, context_instance=RequestContext(request))
+    response.status_code = 500
+    return response
