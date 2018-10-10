@@ -21,6 +21,7 @@ urlpatterns = [
 
 
     path('admin/', admin.site.urls),
+    path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
 
     path('<int:item_id>/detail/transfer', views.transferitm, name='transferitm'),
