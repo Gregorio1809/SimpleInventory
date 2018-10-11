@@ -10,7 +10,7 @@ urlpatterns = [
     url(r'^$', views.HomeView.as_view(), name='home'),
     url(r'^item/$', views.IndexView.as_view(), name='index'),
     url(r'^(?P<item_id>[0-9]+)/detail/$', views.details, name='details'),
-    # url(r'^create_item/$', views.create_item, name='create_item'),
+
     url(r'^item/add/$', views.ItemCreate.as_view(), name='item_form'),
     url(r'^item/(?P<pk>[0-9]+)/delete/$', views.ItemDelete.as_view(), name='item-delete'),
     url(r'^client/add/$', views.ClientCreate.as_view(), name='client_form'),

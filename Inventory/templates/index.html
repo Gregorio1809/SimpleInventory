@@ -5,6 +5,6 @@
     Welcome {{ user.username }}!
 {% else %}
     <p>You are not logged in</p>
-    <a href="{% url 'login' %}">Login</a>
+    <a href="{% url 'Inventory:login' %}">Login</a>
 {% endif %}
 {% endblock %}
