@@ -1,6 +1,7 @@
 from django.urls import path
 from django.contrib import admin
 from django.conf.urls import url, include
+
 from . import views
 
 app_name = 'Inventory'
@@ -18,7 +19,6 @@ urlpatterns = [
     url(r'^client/(?P<pk>[0-9]+)/delete/$', views.ClientDelete.as_view(), name='client-delete'),
     url(r'^category/(?P<pk>[0-9]+)/delete/$', views.CategoryDelete.as_view(), name='category-delete'),
     url(r'^value/(?P<pk>[0-9]+)/delete/$', views.ValueDelete.as_view(), name='value-delete'),
-
 
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),

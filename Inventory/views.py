@@ -1,15 +1,14 @@
-from django.shortcuts import render, render_to_response
 
-from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic.base import TemplateResponseMixin
 from django.template import RequestContext
 
 from .models import Item, Transaction, Client, Value, Category
 from django.views import generic
-from django.views.generic.edit import CreateView, DeleteView
-from django.shortcuts import render, get_object_or_404
+from django.views.generic.edit import DeleteView
+from django.shortcuts import render, get_object_or_404, render_to_response
 from django.urls import reverse_lazy
-from .forms import ItemForm, ClientForm, CategoryForm, ValueForm
+from .forms import ClientForm, CategoryForm, ValueForm
+from accounts.views import SignUp
 
 
 class IndexView(generic.ListView):
