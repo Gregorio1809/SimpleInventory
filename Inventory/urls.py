@@ -2,6 +2,8 @@ from django.urls import path
 from django.contrib import admin
 from django.conf.urls import url, include
 
+from django.contrib.auth import views
+
 from . import views
 
 app_name = 'Inventory'
@@ -26,6 +28,8 @@ urlpatterns = [
 
     path('<int:item_id>/detail/transfer', views.transferitm, name='transferitm'),
     path('<int:item_id>/detail/return', views.returnitm, name='returnitm'),
+
+
 ]
 
 handler404 = 'Inventory.views.handler404'

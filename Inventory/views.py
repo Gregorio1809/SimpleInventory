@@ -1,4 +1,3 @@
-
 from django.views.generic.base import TemplateResponseMixin
 from django.template import RequestContext
 
@@ -8,10 +7,14 @@ from django.views.generic.edit import DeleteView
 from django.shortcuts import render, get_object_or_404, render_to_response
 from django.urls import reverse_lazy
 from .forms import ClientForm, CategoryForm, ValueForm
+
+from django.views.generic import TemplateView
+from braces.views import LoginRequiredMixin
+
 from accounts.views import SignUp
 
 
-class IndexView(generic.ListView):
+class IndexView(LoginRequiredMixin, generic.ListView):
     template_name = 'items.html'
     context_object_name = 'items_list'
 
@@ -19,21 +22,21 @@ class IndexView(generic.ListView):
         return Item.objects.all()
 
 
-class HomeView(generic.TemplateView):
+class HomeView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'index.html'
 
 
-class ItemCreate(generic.CreateView):
+class ItemCreate(LoginRequiredMixin, generic.CreateView):
     model = Item
     fields = ['name', 'category', 'value', 'quantity']
 
 
-class ItemDelete(DeleteView):
+class ItemDelete(LoginRequiredMixin, DeleteView):
     model = Item
     success_url = reverse_lazy('Inventory:index')
 
 
-class ClientCreate(generic.CreateView, generic.ListView, TemplateResponseMixin):
+class ClientCreate(LoginRequiredMixin, generic.CreateView, generic.ListView, TemplateResponseMixin):
     model = Client
     form_class = ClientForm
     template_name = 'Inventory/client_form.html'
@@ -43,7 +46,7 @@ class ClientCreate(generic.CreateView, generic.ListView, TemplateResponseMixin):
         return Client.objects.all()
 
 
-class CategoryCreate(generic.CreateView, generic.ListView, TemplateResponseMixin):
+class CategoryCreate(LoginRequiredMixin, generic.CreateView, generic.ListView, TemplateResponseMixin):
     model = Category
     form_class = CategoryForm
     template_name = 'Inventory/category_form.html'
@@ -53,7 +56,7 @@ class CategoryCreate(generic.CreateView, generic.ListView, TemplateResponseMixin
         return Category.objects.all()
 
 
-class ValueCreate(generic.CreateView, generic.ListView, TemplateResponseMixin):
+class ValueCreate(LoginRequiredMixin, generic.CreateView, generic.ListView, TemplateResponseMixin):
     model = Value
     form_class = ValueForm
     template_name = 'Inventory/value_form.html'
@@ -63,19 +66,31 @@ class ValueCreate(generic.CreateView, generic.ListView, TemplateResponseMixin):
         return Value.objects.all()
 
 
-class ClientDelete(DeleteView):
+class ClientDelete(LoginRequiredMixin, DeleteView):
     model = Client
     success_url = reverse_lazy('Inventory:index')
 
 
-class CategoryDelete(DeleteView):
+class CategoryDelete(LoginRequiredMixin, DeleteView):
     model = Category
     success_url = reverse_lazy('Inventory:index')
 
 
-class ValueDelete(DeleteView):
+class ValueDelete(LoginRequiredMixin, DeleteView):
     model = Value
     success_url = reverse_lazy('Inventory:index')
+
+
+class LoginRequierView(LoginRequiredMixin, TemplateView):
+    template_name = 'registration/login.html'
+
+    login_url = "/signup/"
+    redirect_field_name = "welcomeback"
+    raise_exception = True
+
+    def get(self, request):
+        return self.render_to_response({})
+
 
 
 def details(request, item_id):
